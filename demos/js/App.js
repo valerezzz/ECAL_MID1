@@ -1,7 +1,6 @@
 var App = function() {
   console.log("app is running");
   this.canvas = document.getElementsByTagName("canvas")[0];
-  // document.body.style.background = "black";
   this.w = window.innerWidth;
   this.h = window.innerHeight;
   this.canvas.width = this.w;
@@ -16,10 +15,6 @@ var App = function() {
 App.prototype = {
 
   setup : function() {
-    // this.SPACING = 2;
-    // this.BAR_WIDTH = 1;
-    // this.numBars = Math.round(this.w / this.SPACING);
-    // this.multiplier = 4;
     addEventListener("keydown", this.onKeyDown.bind(this));
 
     // DEMOS
