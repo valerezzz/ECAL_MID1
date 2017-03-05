@@ -6,8 +6,8 @@ var AudioTool = function(mp3) {
   // MIC stuff
   this.stream = null;
   this.analyserNode = null;
-  this.data = null;
-  this.dataW = null;
+  this.data = [];
+  this.dataWave = [];
   this.size = 2048;
   this.counter = 0;
   this.setup();
