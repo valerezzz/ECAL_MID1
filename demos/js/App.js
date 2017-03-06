@@ -25,7 +25,8 @@ App.prototype = {
     // this.rasterDemo = new RasterDemo(this.canvas, this.w, this.h);
     // this.beatDemo = new BeatDemo(this.ctx, this.w, this.h);
     // this.verletDemo = new VerletDemo(this.canvas, this.w, this.h);
-    this.firstDemo = new FirstDemo(this.ctx, this.w, this.h);
+    // this.firstDemo = new FirstDemo(this.ctx, this.w, this.h);
+    this.lineDemo = new LineDemo(this.ctx, this.w, this.h);
 
     this.draw();
   },
@@ -46,7 +47,8 @@ App.prototype = {
       // this.rasterDemo.draw(this.tool.data);
       //  this.beatDemo.draw(this.tool.data, this.tool.dataWave);
       // this.verletDemo.draw(this.tool.data);
-      this.firstDemo.draw(this.tool.data, this.tool.dataWave);
+    //   this.firstDemo.draw(this.tool.data, this.tool.dataWave);
+      this.lineDemo.draw(this.tool.data, this.tool.dataWave);
     }
     // refresh
     requestAnimationFrame(this.draw.bind(this));
