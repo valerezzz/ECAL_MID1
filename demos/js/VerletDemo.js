@@ -7,7 +7,7 @@ var VerletDemo = function(canvas, w, h) {
   // setup verlet
   // simulation
   this.sim = new VerletJS(this.w, this.w, canvas);
-  this.sim.friction = 1;
+  this.sim.friction = 0.99;
   this.sim.highlightColor = "#fff";
   // entities
   this.min = Math.min(this.w, this.h) * 0.5;

@@ -9,13 +9,13 @@ var App = function() {
   this.tool = null;
   this.isMic = false;
   this.setup();
-  this.start();
+
 };
 
 App.prototype = {
 
   setup : function() {
-    addEventListener("keydown", this.onKeyDown.bind(this));
+    document.addEventListener("keydown", this.onKeyDown.bind(this));
 
     // DEMOS
     // this.barDemo = new BarsDemo(this.ctx, this.w, this.h);
@@ -24,10 +24,13 @@ App.prototype = {
     // this.letterDemo = new LetterDemo(this.canvas, this.w, this.h);
     // this.rasterDemo = new RasterDemo(this.canvas, this.w, this.h);
     // this.beatDemo = new BeatDemo(this.ctx, this.w, this.h);
-    this.verletDemo = new VerletDemo(this.canvas, this.w, this.h);
+    // this.verletDemo = new VerletDemo(this.canvas, this.w, this.h);
+    this.firstDemo = new FirstDemo(this.ctx, this.w, this.h);
+
+    this.draw();
   },
 
-  start : function() { this.draw(); },
+  // start : function() { this.draw(); },
 
   draw : function() {
     // clean canvas
@@ -41,8 +44,9 @@ App.prototype = {
 
       // this.letterDemo.draw(this.tool.dataWave);
       // this.rasterDemo.draw(this.tool.data);
-      // this.beatDemo.draw(this.tool.data, this.tool.dataWave);
-      this.verletDemo.draw(this.tool.data);
+      //  this.beatDemo.draw(this.tool.data, this.tool.dataWave);
+      // this.verletDemo.draw(this.tool.data);
+      this.firstDemo.draw(this.tool.data, this.tool.dataWave);
     }
     // refresh
     requestAnimationFrame(this.draw.bind(this));
