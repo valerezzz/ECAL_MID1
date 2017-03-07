@@ -1,6 +1,7 @@
 var App = function() {
   console.log("app is running");
   this.canvas = document.getElementsByTagName("canvas")[0];
+  // document.body.style.background = "black";
   this.w = window.innerWidth;
   this.h = window.innerHeight;
   this.canvas.width = this.w;
@@ -9,13 +10,17 @@ var App = function() {
   this.tool = null;
   this.isMic = false;
   this.setup();
-
+  this.start();
 };
 
 App.prototype = {
 
   setup : function() {
-    document.addEventListener("keydown", this.onKeyDown.bind(this));
+    // this.SPACING = 2;
+    // this.BAR_WIDTH = 1;
+    // this.numBars = Math.round(this.w / this.SPACING);
+    // this.multiplier = 4;
+    addEventListener("keydown", this.onKeyDown.bind(this));
 
     // DEMOS
     // this.barDemo = new BarsDemo(this.ctx, this.w, this.h);
@@ -25,12 +30,10 @@ App.prototype = {
     // this.rasterDemo = new RasterDemo(this.canvas, this.w, this.h);
     // this.beatDemo = new BeatDemo(this.ctx, this.w, this.h);
     // this.verletDemo = new VerletDemo(this.canvas, this.w, this.h);
-    this.firstDemo = new FirstDemo(this.ctx, this.w, this.h);
-
-    this.draw();
+    this.joyDivision = new JoyDivision(this.ctx, this.w, this.h);
   },
 
-  // start : function() { this.draw(); },
+  start : function() { this.draw(); },
 
   draw : function() {
     // clean canvas
@@ -44,16 +47,16 @@ App.prototype = {
 
       // this.letterDemo.draw(this.tool.dataWave);
       // this.rasterDemo.draw(this.tool.data);
-      //  this.beatDemo.draw(this.tool.data, this.tool.dataWave);
+      // this.beatDemo.draw(this.tool.data, this.tool.dataWave);
       // this.verletDemo.draw(this.tool.data);
-      this.firstDemo.draw(this.tool.data, this.tool.dataWave);
+      this.joyDivision.draw(this.tool.data);
     }
     // refresh
     requestAnimationFrame(this.draw.bind(this));
   },
 
   onKeyDown : function(e) {
-    var track = "audio/fireworks.mp3";
+    var track = "audio/click.mp3";
     switch (e.keyCode) {
     case 32: // spacebar
       if (this.tool == null) {

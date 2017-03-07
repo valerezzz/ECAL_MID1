@@ -16,20 +16,29 @@ FirstDemo.prototype = {
     this.ctx.beginPath();
     var centreX = this.w / 2;
     var centreY = this.h / 2;
-    var angle = 360 / 360;
+    var angle = 360 / 1024;
     var counter = 0;
     for (var i = 0; i < 360; i += angle) {
 
-      var v = (this.isDATA) ? data[counter] * 3 : dataWave[counter] * 3;
+      // var v = (this.isDATA) ? data[counter] * 3 : dataWave[counter] * 3;
+      //
+      // this.radius = v;
+      // var x = centreX + Math.cos(i * Math.PI / 180) * this.radius;
+      // var y = centreY + Math.sin(i * Math.PI / 180) * this.radius;
+      // if (i == 0) {
+      //   this.ctx.moveTo(x, y);
+      // } else {
+      //   this.ctx.lineTo(x, y);
+      // }
+      if (counter > 700) {
+        // high
+      } else if (counter > 350) {
+        // medium
 
-      this.radius = v;
-      var x = centreX + Math.cos(i * Math.PI / 180) * this.radius;
-      var y = centreY + Math.sin(i * Math.PI / 180) * this.radius;
-      if (i == 0) {
-        this.ctx.moveTo(x, y);
       } else {
-        this.ctx.lineTo(x, y);
+        // basse
       }
+
       counter++;
     }
     this.ctx.closePath();
