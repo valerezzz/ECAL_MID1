@@ -26,7 +26,8 @@ App.prototype = {
     // this.beatDemo = new BeatDemo(this.ctx, this.w, this.h);
     // this.verletDemo = new VerletDemo(this.canvas, this.w, this.h);
     // this.firstDemo = new FirstDemo(this.ctx, this.w, this.h);
-    this.lineDemo = new LineDemo(this.ctx, this.w, this.h);
+    // this.lineDemo = new LineDemo(this.ctx, this.w, this.h);
+    this.imageDemo = new ImageDemo(this.ctx, this.w, this.h);
 
     this.draw();
   },
@@ -48,29 +49,30 @@ App.prototype = {
       //  this.beatDemo.draw(this.tool.data, this.tool.dataWave);
       // this.verletDemo.draw(this.tool.data);
     //   this.firstDemo.draw(this.tool.data, this.tool.dataWave);
-      this.lineDemo.draw(this.tool.data, this.tool.dataWave);
+    //   this.lineDemo.draw(this.tool.data, this.tool.dataWave);
+      this.imageDemo.draw(this.tool.data, this.tool.dataWave);
     }
     // refresh
     requestAnimationFrame(this.draw.bind(this));
   },
 
   onKeyDown : function(e) {
-    var track = "audio/fireworks.mp3";
+    var track = "audio/okastus.mp3";
     switch (e.keyCode) {
     case 32: // spacebar
       if (this.tool == null) {
         this.tool = new AudioTool(track);
         this.tool.toggle();
       } else {
-        this.tool.reset();
-        if (this.isMic) {
-          this.tool.update(track);
+        // this.tool.reset();
+        // if (this.isMic) {
+        //   this.tool.update(track);
           this.tool.toggle();
-          this.isMic = false;
-        } else {
-          this.tool.update(null);
-          this.isMic = true;
-        }
+        //   this.isMic = false;
+        // } else {
+        //   this.tool.update(null);
+        //   this.isMic = true;
+        // }
       }
       break;
     }
