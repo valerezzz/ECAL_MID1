@@ -29,7 +29,8 @@ App.prototype = {
         // this.lineDemo = new LineDemo(this.ctx, this.w, this.h);
         // this.imageDemo = new ImageDemo(this.ctx, this.w, this.h);
         // this.imageDemo2 = new ImageDemo2(this.ctx, this.w, this.h);
-        this.squareDemo = new SquareDemo(this.ctx, this.w, this.h);
+        // this.squareDemo = new SquareDemo(this.ctx, this.w, this.h);
+        this.mirrorDemo = new MirrorDemo(this.ctx, this.w, this.h);
 
         this.draw();
     },
@@ -45,7 +46,6 @@ App.prototype = {
             this.tool.updateWave();
             // this.barDemo.draw(this.tool.data);
             // this.circleDemo.draw(this.tool.data);
-
             // this.letterDemo.draw(this.tool.dataWave);
             // this.rasterDemo.draw(this.tool.data);
             // this.beatDemo.draw(this.tool.data, this.tool.dataWave);
@@ -54,7 +54,8 @@ App.prototype = {
             // this.lineDemo.draw(this.tool.data, this.tool.dataWave);
             // this.imageDemo.draw(this.tool.data, this.tool.dataWave);
             // this.imageDemo2.draw(this.tool.data, this.tool.dataWave);
-            this.squareDemo.draw(this.tool.data, this.tool.dataWave);
+            // this.squareDemo.draw(this.tool.data, this.tool.dataWave);
+            this.mirrorDemo.draw(this.tool.data, this.tool.dataWave);
 
         }
         // refresh
@@ -62,7 +63,7 @@ App.prototype = {
     },
 
     onKeyDown : function(e) {
-        var track = "audio/goto10.mp3";
+        var track = "audio/okastus.mp3";
         switch (e.keyCode) {
             case 32: // spacebar
             if (this.tool == null) {

@@ -10,7 +10,7 @@ var ImageDemo = function(ctx, w, h) {
     this.image.addEventListener('load', (function() {
         this.imageLoaded = true;
     }).bind(this), false);
-        this.image.src = "img/sound.png";
+    this.image.src = "img/xavier-veilhan.png";
 }
 
 ImageDemo.prototype = {
@@ -37,7 +37,7 @@ ImageDemo.prototype = {
                                        this.image.width / l * this.res,                     // largeur X dans l'image source
                                        this.image.height,                                   // hauteur Y dans l'image source
                                        this.image.width / l * i - this.image.width / 2,     // position X dans le canvas
-                                       (data[i] / 255 - 0.5) * 160 - this.image.height / 2, // position Y (avec décalage) dans le canvas
+                                       (data[i] / 255 - 0.5) * 100 + 50 - this.image.height / 2, // position Y (avec décalage) dans le canvas
                                        this.image.width / l * this.res,                     // largeur X dans l'image source
                                        this.image.height);                                  // largeur Y dans l'image source
                 } else {
@@ -47,7 +47,7 @@ ImageDemo.prototype = {
                                        this.image.width / l * this.res,
                                        this.image.height,
                                        this.image.width / l * i - this.image.width / 2,
-                                       -(data[i] / 255 - 0.5) * 160 - this.image.height / 2,
+                                       -(data[i] / 255 - 0.5) * 100 - 50 - this.image.height / 2,
                                        this.image.width / l * this.res,
                                        this.image.height);
                 }

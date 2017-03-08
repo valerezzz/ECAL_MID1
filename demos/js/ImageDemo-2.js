@@ -5,7 +5,10 @@ var ImageDemo2 = function(ctx, w, h) {
 
     document.body.style.backgroundColor = "black";
 
-    this.res = 50;
+    this.res = 30;
+
+    this.valX = 500;
+    this.valY = 150;
 
     this.imageLoaded = false;
     this.image = new Image();
@@ -34,22 +37,22 @@ ImageDemo2.prototype = {
                 for(var x = 0, ll = dataWave.length; x < ll; x += this.res) {
                     this.ctx.drawImage(this.image,
                                        this.image.width / ll * x,
-                                       this.image.height / (l * 2) * y,
+                                       this.image.height / l / 2 * y,
                                        this.image.width / ll * this.res,
-                                       this.image.height / (l * 2) * this.res,
-                                       this.image.width / ll * x + (dataWave[x] / 255 - 0.5) * 300 - this.image.width / 2,
-                                       this.image.height / (l * 2) * y + (1 - data[y] / 255 - 1) * 150 - this.image.height / 2,
+                                       this.image.height / l / 2 * this.res,
+                                       this.image.width / ll * x + (dataWave[x] / 255 - 0.5) * this.valX - this.image.width / 2,
+                                       this.image.height / l / 2 * y + -(data[y] / 255 - 0.5) * this.valY - this.valY / 2 - this.image.height / 2,
                                        this.image.width / ll * this.res,
-                                       this.image.height / (l * 2) * this.res);
+                                       this.image.height / l / 2 * this.res);
                     this.ctx.drawImage(this.image,
                                        this.image.width / ll * x,
-                                       this.image.height / (l * 2) * (y + l),
+                                       this.image.height / 2 + this.image.height / l / 2 * (l - y),
                                        this.image.width / ll * this.res,
-                                       this.image.height / (l * 2) * this.res,
-                                       this.image.width / ll * x + (dataWave[x] / 255 - 0.5) * 300 - this.image.width / 2,
-                                       this.image.height / (l * 2) * (y + l) + this.image.height / 2 + (data[l - y] / 255 - 1) * 150 - this.image.height / 2,
+                                       this.image.height / l / 2 * this.res,
+                                       this.image.width / ll * x + (dataWave[x] / 255 - 0.5) * this.valX - this.image.width / 2,
+                                       this.image.height / l / 2 * (l - y) + (data[y] / 255 - 0.5) * this.valY + this.valY / 2,
                                        this.image.width / ll * this.res,
-                                       this.image.height / (l * 2) * this.res);
+                                       this.image.height / l / 2 * this.res);
                 }
             }
 
