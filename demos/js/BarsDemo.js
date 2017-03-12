@@ -11,8 +11,10 @@ var BarsDemo = function(ctx, w, h) {
 BarsDemo.prototype = {
 
   draw : function(data) {
-    for (var i = 0; i < this.numBars; ++i) {
-      var magnitude = data[i] * this.multiplier;
+    var dataOffset = 50;
+    var dataLength = data.length - dataOffset * 2;
+    for (var i = 0, l = this.numBars; i < l; ++i) {
+      var magnitude = data[Math.floor(i / l * data.length) + dataOffset] * this.multiplier;
       this.ctx.fillStyle =
           "hsl( " + Math.round((i * 360) / this.numBars) + ", 100%, 50%)";
       this.ctx.fillRect(i * this.SPACING, this.h, this.BAR_WIDTH, -magnitude);

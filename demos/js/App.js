@@ -4,8 +4,8 @@ var App = function() {
     this.canvas = document.getElementsByTagName("canvas")[0];
     this.w = window.innerWidth;
     this.h = window.innerHeight;
-    this.canvas.width = this.w;
-    this.canvas.height = this.h;
+    this.canvas.width = this.w * window.devicePixelRatio;
+    this.canvas.height = this.h * window.devicePixelRatio;
     this.ctx = this.canvas.getContext("2d");
     this.tool = null;
     this.isMic = false;
@@ -46,7 +46,10 @@ App.prototype = {
         // this.imageDemo = new ImageDemo(this.ctx, this.w, this.h);
         // this.imageDemo2 = new ImageDemo2(this.ctx, this.w, this.h);
         // this.squareDemo = new SquareDemo(this.ctx, this.w, this.h);
-        this.mirrorDemo = new MirrorDemo(this.ctx, this.w, this.h);
+        // this.mirrorDemo = new MirrorDemo(this.ctx, this.w, this.h);
+        // this.handDemo = new HandDemo(this.ctx, this.w, this.h);
+        // this.beardDemo = new BeardDemo(this.ctx, this.w, this.h);
+        this.slitDemo = new SlitDemo(this.ctx, this.w, this.h);
 
         this.draw();
     },
@@ -76,6 +79,8 @@ App.prototype = {
 
     draw : function() {
         // clean canvas
+        this.ctx.save();
+        this.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
         this.ctx.clearRect(0, 0, this.w, this.h); // ----> paperjs doesn't need
         // draw stuff
         if (this.tool) {
@@ -97,9 +102,14 @@ App.prototype = {
             // this.imageDemo.draw(this.tool.data, this.tool.dataWave);
             // this.imageDemo2.draw(this.tool.data, this.tool.dataWave);
             // this.squareDemo.draw(this.tool.data, this.tool.dataWave);
-            this.mirrorDemo.draw(this.tool.data, this.tool.dataWave);
+            // this.mirrorDemo.draw(this.tool.data, this.tool.dataWave);
+            // this.handDemo.draw(this.tool.data, this.tool.dataWave);
+            // this.beardDemo.draw(this.tool.data, this.tool.dataWave);
+            this.slitDemo.draw(this.tool.data, this.tool.dataWave);
 
         }
+
+        this.ctx.restore();
         // refresh
         requestAnimationFrame(this.draw.bind(this));
     },
@@ -112,15 +122,15 @@ App.prototype = {
                 this.tool = new AudioTool(track);
                 this.tool.toggle();
             } else {
-                // this.tool.reset();
-                // if (this.isMic) {
-                //   this.tool.update(track);
-                this.tool.toggle();
-                //   this.isMic = false;
-                // } else {
-                //   this.tool.update(null);
-                //   this.isMic = true;
-                // }
+                this.tool.reset();
+                if (this.isMic) {
+                  this.tool.update(track);
+                  this.tool.toggle();
+                  this.isMic = false;
+                } else {
+                  this.tool.update(null);
+                  this.isMic = true;
+                }
             }
             break;
 =======

@@ -29,7 +29,7 @@ ImageDemo.prototype = {
             this.ctx.translate(this.w / 2, this.h / 2);
 
             var inc = 0;
-            for(var i = 0, l = data.length; i < l; i += this.res) {
+            for(var i = 0, l = data.length - 200; i < l; i += this.res) {
                 if(inc++ % 2 == 0) {
                     this.ctx.drawImage(this.image,                                          // image source
                                        this.image.width / l * i,                            // position X dans l'image source

@@ -4,7 +4,7 @@ var LineDemo = function(ctx, w, h) {
     this.ctx = ctx;
 
     this.lines = [];
-    this.resolution = 32;
+    this.resolution = 30;
 }
 
 LineDemo.prototype = {
@@ -40,7 +40,7 @@ LineDemo.prototype = {
     },
 
     addLines: function(data) {
-        for(var i = 0, l = data.length; i < l; i += this.resolution) {
+        for(var i = 0, l = data.length - 200; i < l; i += this.resolution) {
             if(data[i] > 0) {
                 this.lines.push(new Line(0, this.h - i / l * this.h, this.w / 2, this.h - i / l * this.h, this.h / (l / this.resolution), data[i], this.ctx));
             }

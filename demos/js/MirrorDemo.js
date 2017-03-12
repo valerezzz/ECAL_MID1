@@ -3,7 +3,7 @@ var MirrorDemo = function(ctx, w, h) {
     this.h   = h;
     this.ctx = ctx;
 
-    // document.body.style.backgroundColor = "black";
+    document.body.style.backgroundColor = "black";
 
     this.imageLoaded = false;
     this.image = new Image();
@@ -30,43 +30,23 @@ MirrorDemo.prototype = {
             this.ctx.drawImage(this.image,
                                0,
                                0,
-                               this.image.width ,
+                               this.image.width,
                                this.image.height,
-                               -this.image.width / 2 - data[0] / 255 * 100 * 2,
+                               -this.image.width / 2,
                                -this.image.height / 2,
                                this.image.width,
                                this.image.height);
 
             this.ctx.scale(-1, 1);
-            this.ctx.drawImage(this.ctx.canvas,
+            this.ctx.drawImage(this.image,
                                data[0] / 255 * 100 * 2,
                                0,
-                               this.w / 2 - data[0] / 255 * 100,
-                               this.h,
-                               -this.w / 2,
-                               -this.h / 2,
-                               this.w / 2 - data[0] / 255 * 100,
-                               this.h);
-
-           this.ctx.scale(-1, -1);
-           this.ctx.drawImage(this.ctx.canvas,
-                              0,
-                              data[0] / 255 * 100 * 2,
-                              this.w,
-                              this.h / 2 - data[0] / 255 * 100,
-                              -this.w / 2,
-                              -this.h / 2,
-                              this.w,
-                              this.h / 2 - data[0] / 255 * 100);
-            // this.ctx.drawImage(this.image,
-            //                    data[0] / 255 * 100 * 2,
-            //                    0,
-            //                    this.image.width / 2 - data[0] / 255 * 100,
-            //                    this.image.height,
-            //                    -this.image.width / 2,
-            //                    -this.image.height / 2,
-            //                    this.image.width / 2 - data[0] / 255 * 100,
-            //                    this.image.height);
+                               this.image.width / 2 - data[0] / 255 * 100,
+                               this.image.height,
+                               -this.image.width / 2,
+                               -this.image.height / 2,
+                               this.image.width / 2 - data[0] / 255 * 100,
+                               this.image.height);
 
             this.ctx.restore();
         }
