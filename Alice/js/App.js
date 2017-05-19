@@ -8,10 +8,14 @@ var App = function() {
   this.canvas.height = this.h;
   this.ctx = this.canvas.getContext("2d");
 
+  // mémoire du sol (background)
   this.groundPool = [];
+  // mémoire des objects
   this.objectPool = [];
 
+  // éléments du sol (background) à affficher à l'écran
   this.visibleGround = [];
+  // éléments à afficher
   this.visibleObject = [];
 
   this.limit = 300;
@@ -30,8 +34,8 @@ App.prototype = {
     }
     // préparation des objects
     for (var i = 0; i < 40; i++) {
-      var floor = new Shape(0, 0, {"w" : 20, "h" : 20}, this.ctx, "circle");
-      this.objectPool.push(floor);
+      var obj = new Shape(0, 0, {"w" : 20, "h" : 20}, this.ctx, "circle");
+      this.objectPool.push(obj);
     }
 
     // prepare un sol par defaut
@@ -61,11 +65,12 @@ App.prototype = {
       if (this.visibleGround[i].x > this.limit) {
         var sliced = this.visibleGround.splice(i, 1);
         this.groundPool.push(sliced[0]);
-        var test = this.groundPool.shift();
+        // je remets un sol
+        var ground = this.groundPool.shift();
         var index = this.visibleGround.length - 1;
-        test.x = this.visibleGround[index].x - test.size.w;
-        test.y = this.h / 2;
-        this.visibleGround.push(test);
+        ground.x = this.visibleGround[index].x - ground.size.w;
+        ground.y = this.h / 2;
+        this.visibleGround.push(ground);
       } else {
         this.visibleGround[i].update();
         this.visibleGround[i].draw();
@@ -74,8 +79,13 @@ App.prototype = {
 
     // pour les object
     for (var i = this.visibleObject.length - 1; i >= 0; i--) {
-      this.visibleObject[i].update();
-      this.visibleObject[i].draw();
+      if (this.visibleObject[i].x > this.limit) {
+        var sliced = this.visibleObject.splice(i, 1);
+        this.objectPool.push(sliced[0]);
+      } else {
+        this.visibleObject[i].update();
+        this.visibleObject[i].draw();
+      }
     }
 
     // draw limit
@@ -90,9 +100,14 @@ App.prototype = {
 
   createNewObj : function() {
     console.log("CREATE NEW OBJ");
-    var obj = this.objectPool.shift();
-    obj.y = this.h / 2;
-    this.visibleObject.push(obj);
+    var rnd = Math.ceil(Math.random() * 5);
+    for (var i = 0; i < rnd; i++) {
+      var obj = this.objectPool.shift();
+      obj.y = this.h / 2;
+      obj.x = Math.random() * -100;
+      obj.speed = Math.ceil(Math.random() * 3);
+      this.visibleObject.push(obj);
+    }
   }
 
 };

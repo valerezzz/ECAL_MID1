@@ -4,11 +4,12 @@ var Shape = function(x, y, size, ctx, type) {
   this.ctx = ctx;
   this.type = type;
   this.size = size; // object {"w":100,"h":100}
+  this.speed = 1;
 };
 
 Shape.prototype = {
 
-  update : function() { this.x++; },
+  update : function() { this.x += this.speed; },
 
   draw : function() {
 
