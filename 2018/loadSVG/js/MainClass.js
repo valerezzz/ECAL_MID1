@@ -30,7 +30,7 @@ class MainClass {
     item.scale(0.1, item.bounds.topLeft);
     item.translate(this.w / 2, this.h / 2);
     item.style = {fillColor: 'red', strokeColor: 'black'};
-    var copy = item.clone();
+    let copy = item.clone();
     copy.rotate(180);
   }
 
