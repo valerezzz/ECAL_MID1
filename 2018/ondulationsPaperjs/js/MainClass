@@ -1,0 +1,55 @@
+'use strict';
+
+let color = ['#EFB57B', '#F48F21', '#CE7720'];  // plus clair-> plus foncé
+let x = 20 / 2;    // ecart en x de la grille /2 pour symétrie
+let y = 11.6 / 2;  // ecart en y de la grille /2 pour symétrie
+let pos = new paper.Point(x, y);
+
+
+
+class MainClass {
+  constructor() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    this.w = window.innerWidth;
+    this.h = window.innerHeight;
+
+    // Memoire de stockage de toutes les pièces
+    // Il s'agit d'avoir un endroit ou l'on conserve les références des pièces
+    // à déplacer
+    // Pour l'exemple, j'ai créé ici 2 tableaux:
+    // Un pour les pièces originales
+    // L'autre pour les pièces symétriques (Copy)
+    // Dans le mouseDrag, on déplacera ainsi chaque pièce selon un delta
+    this.allPieces = [];
+    this.allCopyPieces = [];
+
+    // A l'intérieur d'une classe JS, toutes les fonctions Paperjs sont
+    // accessibles à travers l'instance globale "paper"
+    paper.setup(canvas);
+    paper.project.importSVG('res/triangle1.svg', this.triangle1.bind(this));
+    paper.project.importSVG('res/triangle2.svg', this.triangle2.bind(this));
+    paper.project.importSVG('res/line1.svg', this.line1.bind(this));
+    paper.project.importSVG('res/line2.svg', this.line2.bind(this));
+    paper.project.importSVG('res/line3.svg', this.line3.bind(this));
+
+    this.x = pos.x;
+    this.y = pos.y;
+
+
+    // les addEventListener sont déjà gérés par PAPERJS.
+    // il suffit simplement de les linker avec nos propres fonction
+    // personnalisées.
+    // ici je leur ai donné les noms habituels:
+    // this.draw, this.onMouseDown, this.onMouseUp, this.onMouseMove
+    // plus d'infos ici : http://paperjs.org/reference/mouseevent/
+    paper.view.onFrame = this.draw;
+    paper.view.onMouseDown = this.onMouseDown.bind(this);
+    paper.view.onMouseUp = this.onMouseUp.bind(this);
+    paper.view.onMouseMove = this.onMouseMove.bind(this);
+    paper.view.onMouseDrag = this.onMouseDrag.bind(this);
+    this.mouseDown = false;
+    this.mousePoint = paper.view.center;
+    // this.point = paper.view.center;
+    this.point = paper.view.center;
+  }
