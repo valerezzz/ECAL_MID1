@@ -1,5 +1,7 @@
 'use strict';
-
+/*
+  FROM DANIEL SHIFFMAN TOOTHPICKS CHALLENGE 12.14.2018
+*/
 class App {
   constructor() {
     this.canvas = document.createElement('canvas');
