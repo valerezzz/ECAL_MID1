@@ -34,7 +34,9 @@ class App {
       let t = this.picks[i];
       this.minX = Math.min(t.ax, this.minX);
       this.maxX = Math.max(t.ax, this.maxX);
-      let hue = Math.round(t.ax.map(this.minX, this.maxX, 0, 360));
+      // rainbow version
+      // let hue = Math.round(t.ax.map(this.minX, this.maxX, 0, 360));
+      let hue = 0;
       t.show(factor, hue);
     }
     let next = [];
