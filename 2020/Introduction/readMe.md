@@ -63,7 +63,7 @@
 	console.log(monTableau)
 
 [ 2 , 67 , 130 ]<br/>
-[ 0   1    2   ]
+[ 0 |  1  |  2   ]
 
 	let valeur = monTableau[0]
 
@@ -73,7 +73,7 @@
 
 <b>ATTENTION SI ON SUPPRIME UN ELEMENT</b><br/>
 [ 2 , 130 ]<br/>
-[ 0   1   ]
+[ 0 |  1   ]
 
 
 
