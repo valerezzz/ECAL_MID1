@@ -62,7 +62,7 @@
 	monTableau.push(130);
 	console.log(monTableau)
 
-[ 2 , 67 , 130 ]
+[ 2 , 67 , 130 ]<br/>
 [ 0   1    2   ]
 
 	let valeur = monTableau[0]
@@ -72,7 +72,7 @@
 	}
 
 <b>ATTENTION SI ON SUPPRIME UN ELEMENT</b><br/>
-[ 2 , 130 ]
+[ 2 , 130 ]<br/>
 [ 0   1   ]
 
 
