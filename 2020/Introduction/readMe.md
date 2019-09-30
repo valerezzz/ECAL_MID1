@@ -31,17 +31,17 @@
 
 <b>BOUCLE</b><br/>
 
-	resultat = addition(0,21);
-	resultat = addition(1,21);
-	resultat = addition(2,21);
-	resultat = addition(3,21);
-	resultat = addition(4,21);
-	resultat = addition(5,21);
-	resultat = addition(6,21);
-	resultat = addition(7,21);
-	resultat = addition(8,21);
-	resultat = addition(9,21);
-	resultat = addition(10,21);
+	resultat = addition(0,2);
+	resultat = addition(1,2);
+	resultat = addition(2,2);
+	resultat = addition(3,2);
+	resultat = addition(4,2);
+	resultat = addition(5,2);
+	resultat = addition(6,2);
+	resultat = addition(7,2);
+	resultat = addition(8,2);
+	resultat = addition(9,2);
+	resultat = addition(10,2);
 
 	for (let i = 0; i<=10; i+=1 ) {
   	 let resultat = addition(i,2);
