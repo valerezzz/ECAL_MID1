@@ -1,9 +1,10 @@
-VARIABLES
-ex :  let nomVariable1 = 2 ;
-      const nomVariable2 = 5 ;
-      let resultat = 0;
+<b>VARIABLES<b/><br/>
 
-      resultat = nomVariable1 + nomVariable2;
+	let nomVariable1 = 2 ;
+	const nomVariable2 = 5 ;
+	let resultat = 0;
+
+      	resultat = nomVariable1 + nomVariable2;
 
 
 FUNCTIONS
