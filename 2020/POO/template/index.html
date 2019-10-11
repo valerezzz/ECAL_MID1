@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <title>JS</title>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js" type="text/javascript"></script>
+      <script src="js/p5.js" type="text/javascript"></script> -->
+    <!-- <script src="js/App.js" type="text/javascript"></script> -->
+    <style>
+    body{
+      margin:0;
+      padding:0;
+    }
+    </style>
+      <script src="js/Cercle.js" type="text/javascript"></script>
+  </head>
+  <body>
+
+    <script type="text/javascript">
+
+
+      const canvas = document.createElement('canvas');
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      canvas.width = w;
+      canvas.height = h;
+      document.body.appendChild(canvas);
+      console.log('tout est ok');
+
+      const ctx = canvas.getContext('2d');
+      // sconsole.log(ctx);
+      let mouseX = 0;
+      let mouseY = 0;
+
+      document.addEventListener('mousemove',(e)=>{
+        mouseX = e.x;
+        mouseY = e.y;
+      });
+
+      //////////////////////////////////////////////////////
+
+      ctx.fillStyle = 'pink';
+      ctx.fillRect(0,0,w,h);
+
+      ctx.fillStyle = 'yellow';
+      ctx.strokeStyle = 'black';
+      const size = 6;
+
+      let x = 100;
+      let y = 50;
+
+      const tableau = []
+
+      for(let j = 0;j<75;j+=1.5){
+        for(let i = 0;i<100;i+=1.5){
+          const rond = new Cercle(ctx);
+          rond.rayon = size/3;
+          rond.positionx = x+(size*i);
+          rond.positiony = y+(size*j);
+          rond.color = 'black';//'#'+Math.floor(Math.random()*16777215).toString(16);
+          tableau.push(rond);
+          // rond.affichage();
+        }
+      }
+
+      console.log(tableau.length);
+
+
+      function draw(){
+        console.log('draw');
+        ctx.clearRect(0,0,w,h);
+        for(let i = 0;i<tableau.length;i++){
+          tableau[i].affichage();
+          tableau[i].anime(i);
+        }
+        requestAnimationFrame(draw);
+      }
+
+      draw();
+
+    </script>
+  </body>
+</html>
