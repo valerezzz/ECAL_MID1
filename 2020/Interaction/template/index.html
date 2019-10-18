@@ -1,0 +1,145 @@
+<html>
+  <head>
+    <title>JS</title>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js" type="text/javascript"></script>
+      <script src="js/p5.js" type="text/javascript"></script> -->
+    <!-- <script src="js/App.js" type="text/javascript"></script> -->
+    <style>
+    body{
+      margin:0;
+      padding:0;
+    }
+    </style>
+      <script src="js/Cercle.js" type="text/javascript"></script>
+  </head>
+  <body>
+
+    <script type="text/javascript">
+
+
+      const canvas = document.createElement('canvas');
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      canvas.width = w;
+      canvas.height = h;
+      document.body.appendChild(canvas);
+      console.log('tout est ok');
+
+      const ctx = canvas.getContext('2d');
+      // sconsole.log(ctx);
+      let mouseX = 0;
+      let mouseY = 0;
+
+      //callbacks
+      function onMouseMove(e){
+        mouseX = e.x ;
+        mouseY = e.y;
+
+        for(let i = 0;i<tableau.length;i++){
+          const cercle = tableau[i];
+          if(cercle.isMovable == true){
+            cercle.positionx = mouseX;
+            cercle.positiony = mouseY;
+          }
+        }
+      }
+
+      function onKeyDown(e){
+        console.log(e.keyCode);
+      }
+
+      function onMouseClick(e){
+        const pointeDeSourisX = e.x;
+        const pointeDeSourisY = e.y;
+        for(let i = 0;i<tableau.length;i++){
+          const cercle = tableau[i];
+          const cercleX = cercle.positionx;
+          const cercleY = cercle.positiony;
+          const diffx = pointeDeSourisX - cercleX;
+          const diffy = pointeDeSourisY - cercleY;
+          const distance = Math.sqrt(diffx*diffx+ diffy*diffy);
+          if(distance<=cercle.rayonRef){
+            cercle.color = '#'+Math.floor(Math.random()*16777215).toString(16);
+            cercle.isMovable = false;
+          }
+        }
+      }
+
+      function onMouseDown(e){
+        const pointeDeSourisX = e.x;
+        const pointeDeSourisY = e.y;
+        for(let i = 0;i<tableau.length;i++){
+          const cercle = tableau[i];
+          const cercleX = cercle.positionx;
+          const cercleY = cercle.positiony;
+          const diffx = pointeDeSourisX - cercleX;
+          const diffy = pointeDeSourisY - cercleY;
+          const distance = Math.sqrt(diffx*diffx+ diffy*diffy);
+          if(distance<=cercle.rayonRef){
+            cercle.isMovable = true;
+            cercle.rayonRef = 50 ;
+          }
+        }
+      }
+
+      function onMouseUp(e){
+        for(let i = 0;i<tableau.length;i++){
+          const cercle = tableau[i];
+          cercle.isMovable = false;
+        }
+      }
+
+      // 3 écouteurs d'évènements
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('click', onMouseClick);
+      document.addEventListener('keydown',onKeyDown);
+      document.addEventListener('mousedown',onMouseDown);
+      document.addEventListener('mouseup',onMouseUp);
+
+
+
+      //////////////////////////////////////////////////////
+
+      ctx.fillStyle = 'pink';
+      ctx.fillRect(0,0,w,h);
+
+      ctx.fillStyle = 'yellow';
+      ctx.strokeStyle = 'black';
+      const size = 6;
+
+      let x = 100;
+      let y = 50;
+
+      const tableau = [];
+
+      for(let j = 0;j<76;j+=2){
+        for(let i = 0;i<100;i+=2){
+          const cercle = new Cercle(ctx);
+          cercle.rayon = size/3;
+          cercle.positionx = x+(size*i);
+          cercle.positiony = y+(size*j);
+          cercle.color = 'black';//'#'+Math.floor(Math.random()*16777215).toString(16);
+          tableau.push(cercle);
+          // rond.affichage();
+        }
+      }
+
+      console.log(tableau.length);
+
+
+      function draw(){
+        // console.log('draw');
+        ctx.clearRect(0,0,w,h);
+        for(let i = 0;i<tableau.length;i++){
+          const cercle = tableau[i];
+          cercle.affichage();
+          cercle.anime(i);
+        }
+        requestAnimationFrame(draw);
+      }
+
+      draw();
+
+    </script>
+  </body>
+</html>
