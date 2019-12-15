@@ -5,6 +5,9 @@
 
   This example draws random segments on the skewed grid, and make them appear or
   disapear whith mouse over
+
+  Matrix translation reference :
+  https://riptutorial.com/html5-canvas/example/19666/a-transformation-matrix-to-track-translated--rotated---scaled-shape-s-
 */
 
 class App {
