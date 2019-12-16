@@ -22,14 +22,6 @@ class App {
     this.slider.t = 0;
     this.slider.rayon = 10;
 
-    this.pool = [];
-    for (let i = 0; i < 550; i++) {
-      this.pool.push(new Cercle(this.ctx));
-    }
-    this.visibleCercles = [];
-    this.thickness = {x: 100, y: 20};
-    // this.timer = 0;
-
     this.init();
     this.setup();
   }
@@ -64,7 +56,6 @@ class App {
       }
     }
     this.bz.update(this.anchors);
-
     this.positionSlider();
     // move the slider along the line....
     if (this.slider.isMoving) {
