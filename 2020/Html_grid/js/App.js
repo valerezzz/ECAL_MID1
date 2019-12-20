@@ -8,8 +8,6 @@ class App {
     this.lettreA = new LettreA(layer1);
     const layer2 = this.grid.cases[1];
     this.letterP5 = new LettreP5(layer2);
-    const layer3 = this.grid.cases[2];
-    this.letterPaper = new LettrePaper(layer3);
     this.setup();
   }
   setup() {
