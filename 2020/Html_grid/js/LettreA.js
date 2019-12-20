@@ -7,14 +7,19 @@ class LettreA {
     this.canvas.height = this.h = parseInt(parent.style.height);
     this.ctx = this.canvas.getContext('2d');
     parent.appendChild(this.canvas);
+
     this.angle = 0;
     // variable to check if the canvas is active or not
     this.active = false;
   }
 
   update() {
-    this.canvas.width = this.w = parseInt(this.parent.style.width);
-    this.canvas.height = this.h = parseInt(this.parent.style.height);
+    this.w = parseInt(this.parent.style.width);
+    this.h = parseInt(this.parent.style.height);
+
+    this.canvas.width = this.w ;
+    this.canvas.height = this.h ;
+
     if (this.w >= window.innerWidth && this.h >= window.innerHeight) {
       this.active = true;
     } else {

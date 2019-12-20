@@ -38,7 +38,6 @@ class LettreP5 {
   }
 }
 
-
 class Spring2D {
   constructor(xpos, ypos, m, g) {
     this.x = xpos;  // The x- and y-coordinates
