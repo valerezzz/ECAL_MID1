@@ -114,7 +114,7 @@ class App {
     */
     this.ctx.fillStyle = 'rgba(255,255,255,1)';
     this.ctx.strokeStyle = 'rgba(255,255,255,1)';
-    this.ctx.lineWidth = 5;
+    this.ctx.lineWidth = 20;
     // draw CURVE
     this.ctx.beginPath();
     this.ctx.moveTo(this.anchors[0].x, this.anchors[0].y);
@@ -129,7 +129,7 @@ class App {
     // Draw the second line on top of the first one
     // bu limitated to the slider
     this.ctx.strokeStyle = 'rgba(0,0,255,1)';
-    this.ctx.lineWidth = 3;
+    this.ctx.lineWidth = 14;
     this.ctx.beginPath();
     this.ctx.moveTo(this.anchors[0].x, this.anchors[0].y);
     for (let i = 0; i <= this.slider.t; i += (1 / 500)) {
