@@ -3,22 +3,29 @@ class LettreP5 {
     this.parent = parent;
     this.w = parseFloat(parent.style.width);
     this.h = parseFloat(parent.style.height);
+    
+    const P5 = this.P5 = new p5(sketch => sketch);
+
     // p5 canvas
-    this.canvas = createCanvas(this.w, this.h);
-    this.canvas.canvas.style.position = 'absolute';
-    this.canvas.parent(parent);
+    this.p5Canvas = P5.createCanvas(this.w, this.h);
+    this.p5Canvas.canvas.style.position = 'absolute';
+    this.p5Canvas.parent(parent);
     // init p5 VARS...
-    fill(255, 0, 0, 126);
+    P5.fill(255, 0, 0, 126);
     this.gravity = 9.0;
     this.mass = 2.0;
-    this.s1 = new Spring2D(0.0, width / 2, this.mass, this.gravity);
-    this.s2 = new Spring2D(0.0, width / 2, this.mass, this.gravity);
+    this.s1 = new Spring2D(P5, 0.0, P5.width / 2, this.mass, this.gravity);
+    this.s2 = new Spring2D(P5, 0.0, P5.width / 2, this.mass, this.gravity);
+
   }
+
   update() {
+    const P5 = this.P5;
+
     this.w = parseInt(this.parent.style.width);
     this.h = parseInt(this.parent.style.height);
     // p5 resize canvas
-    resizeCanvas(this.w, this.h);
+    P5.resizeCanvas(this.w, this.h);
 
     if (this.w >= window.innerWidth && this.h >= window.innerHeight) {
       this.active = true;
@@ -28,18 +35,25 @@ class LettreP5 {
   }
 
   draw() {
+    const P5 = this.P5;
+
     if (this.active) {
-      background(0);
+      P5.background(0);
     }
-    this.s1.update(mouseX, mouseY);
-    this.s1.display(mouseX, mouseY);
+
+    this.s1.update(P5.mouseX, P5.mouseY);
+    this.s1.display(P5.mouseX, P5.mouseY);
     this.s2.update(this.s1.x, this.s1.y);
     this.s2.display(this.s1.x, this.s1.y);
   }
 }
 
+
 class Spring2D {
-  constructor(xpos, ypos, m, g) {
+  constructor(P5Instance, xpos, ypos, m, g) {
+
+    const P5 = this.P5 = P5Instance;
+
     this.x = xpos;  // The x- and y-coordinates
     this.y = ypos;
     this.vx = 0;  // The x- and y-axis velocities
@@ -64,9 +78,12 @@ class Spring2D {
   }
 
   display(nx, ny) {
-    noStroke();
-    ellipse(this.x, this.y, this.radius * 2, this.radius * 2);
-    stroke(255);
-    line(this.x, this.y, nx, ny);
+
+    const P5 = this.P5;
+
+    P5.noStroke();
+    P5.ellipse(this.x, this.y, this.radius * 2, this.radius * 2);
+    P5.stroke(255);
+    P5.line(this.x, this.y, nx, ny);
   }
 }
