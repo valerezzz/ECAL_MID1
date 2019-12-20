@@ -29,6 +29,8 @@ class LettrePaper {
     this.LETTER.strokeJoin = 'miter';
     this.LETTER.applyMatrix = false;
 
+    this.debugMode = true;
+
     this.dash = {
       start: 0,
       end: 0.5,
