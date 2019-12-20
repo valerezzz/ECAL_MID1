@@ -1,0 +1,25 @@
+/* CSS files add styling rules to your content */
+
+html, body { 
+  margin: 0;
+  padding: 0;
+  
+}
+
+body {
+  font-family: helvetica, arial, sans-serif;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  background-color: black;
+}
+
+canvas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+title {
+  font-style: italic;
+}
