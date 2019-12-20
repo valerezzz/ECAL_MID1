@@ -10,6 +10,8 @@ class App {
     this.letterP5 = new LettreP5(layer2);
     const layer3 = this.grid.cases[2];
     this.lettrePaper = new LettrePaper(layer3);
+    const layer4 = this.grid.cases[3];
+    this.letterP5_2 = new LettreP5(layer4);
 
     this.setup();
   }
@@ -19,14 +21,18 @@ class App {
   }
 
   draw() {
+    
     this.lettreA.update();
     this.lettreA.draw();
+
     this.letterP5.update();
     this.letterP5.draw();
 
     this.lettrePaper.update();
-
     this.lettrePaper.draw();
+
+    this.letterP5_2.update();
+    this.letterP5_2.draw();
 
     requestAnimationFrame(this.draw.bind(this));
   }
@@ -36,4 +42,4 @@ window.onload = function() {
   new App();
 }
 // force p5
-function setup() {}
+// function setup() {}
