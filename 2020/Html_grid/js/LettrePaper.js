@@ -22,10 +22,15 @@ class LettrePaper {
     this.addSegments(
         this.LETTER, './data/svg/letter_1.svg');  // Load external svg path
 
+    setTimeout(() => {
+      console.log(this.LETTER.segments.length);
+    }, 1);
+
     this.LETTER.strokeColor = 'black';
     this.LETTER.strokeWidth = 50;
     this.LETTER.strokeJoin = 'miter';
     this.LETTER.applyMatrix = false;
+
 
     this.debugMode = true;
 
@@ -80,6 +85,9 @@ class LettrePaper {
   addSegments(path, svgFile) {
     path.importSVG(svgFile, function(svg) {
       path.segments = svg.lastChild.segments
+      // divide by many addSegments
+      // try to change the number ex: 0.5
+      path.flatten(0.05);
     });
   }
 }
