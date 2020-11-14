@@ -28,6 +28,11 @@ class CanvasVanilla {
     // INITIALISATION DES VARIABLES UTILES
     this.angle = 0;
     this.active = false;
+    // Ajout de l'audio
+    // pour que l'audio fonctionne il faut clicker une fois sur la page.
+    // sans interaction l'audio est bloqué
+    this.sound = new Audio();
+    this.sound.src = "/data/sound/pop.mp3";
   }
 
   update() {
@@ -66,16 +71,14 @@ class CanvasVanilla {
     } else {
       r = this.w / 2;
     }
+    const radius = Math.abs(Math.sin((this.angle * Math.PI) / 180)) * r;
+    // on joue l'audio quand le rayon du cercle est plus petit que 2
+    if (radius < 2) {
+      this.sound.play();
+    }
     this.ctx.clearRect(0, 0, this.w, this.h);
     this.ctx.beginPath();
-    this.ctx.arc(
-      this.w / 2,
-      this.h / 2,
-      Math.abs(Math.sin((this.angle * Math.PI) / 180)) * r,
-      0,
-      Math.PI * 2,
-      false
-    );
+    this.ctx.arc(this.w / 2, this.h / 2, radius, 0, Math.PI * 2, false);
     this.ctx.fill();
     this.ctx.closePath();
     this.angle++;
