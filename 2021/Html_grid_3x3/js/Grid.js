@@ -16,7 +16,7 @@ class Grid {
     // INITIALISATION D'UN TABLEAU POUR STOCKER LA REPRESENTATION JS DE CHAQUE CASE
     this.cases = [];
     // MESSAGE PAR DEFAULT DE CHAQUE CASE (9 POUR CET EXEMPLE)
-    this.letter = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
+    this.letter = ["A", "B", "C", "D", "", "F", "G", "H", "I"];
     // FUNCTION DE CREATION DE LA GRILLE
     this.initGrid();
     // FUNCTION D'AFFECTATION DU CLICK
