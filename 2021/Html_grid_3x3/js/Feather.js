@@ -104,7 +104,7 @@ class Feather {
     // valeur d'incrémentation de l'angle pour la forme de la plume
     // le max sera  360/50 et le minimum sera 1
     // en proportion de la position de la souris
-    let fact = Math.max(50, this.map(this.mouseY - this.originy, 0, h, 0, 360));
+    let fact = 100; //Math.max(50, this.map(this.mouseY - this.originy, 0, h, 0, 360));
     // tableaux pour stocker les extrémités de la plume (gauche et droite)
     let allPoints = { right: [], left: [] };
 
@@ -164,6 +164,7 @@ class Feather {
       (Math.PI + Math.PI / this.map(this.mouseX - this.originx, 0, w, 1, 10)) *
         orientation
     );
+    // this.ctx.rotate((Math.PI / 4 + Math.PI) * orientation);
     // dessin de la ligne
     this.ctx.moveTo(0, 0);
     this.ctx.lineTo(point.x, point.y);
