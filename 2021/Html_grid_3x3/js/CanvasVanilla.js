@@ -74,7 +74,7 @@ class CanvasVanilla {
     const radius = Math.abs(Math.sin((this.angle * Math.PI) / 180)) * r;
     // on joue l'audio quand le rayon du cercle est plus petit que 2
     if (radius < 2) {
-      this.sound.play();
+      // this.sound.play();
     }
     this.ctx.clearRect(0, 0, this.w, this.h);
     this.ctx.beginPath();
