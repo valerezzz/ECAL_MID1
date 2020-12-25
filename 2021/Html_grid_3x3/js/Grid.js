@@ -24,12 +24,16 @@ class Grid {
   }
 
   initListener() {
-    document.addEventListener("click", this.onClick.bind(this));
+    this.handlers = {
+      click: this.onClick.bind(this),
+      end: this.onEnd.bind(this),
+      resize: this.onResize.bind(this),
+    };
     // ON AJOUTE EGALEMENT UN LISTENER POUR VERIFIER QUE LE FULLSCREEN EST BIEN EN PLACE (OU REVENU CORRECTEMENT EN POSITION DE GRILLE)
-    this.onEndHandler = this.onEnd.bind(this);
-    document.addEventListener("transitionend", this.onEndHandler);
+    document.addEventListener("transitionend", this.handlers.end);
+    document.addEventListener("click", this.handlers.click);
     // SI ON CHANGE LA TAILLE DE LA FENETRE, IL S'AGIRA DE REDIMENSIONNER/REPOSITIONNER LA GRILLE
-    window.addEventListener("resize", this.onResize.bind(this));
+    window.addEventListener("resize", this.handlers.resize);
   }
 
   onResize(e) {
@@ -50,19 +54,23 @@ class Grid {
   }
 
   onEnd(e) {
-    if (e.propertyName == "transform") {
+    if (e.propertyName == "transform" || e.propertyName == "width") {
       const fullscreen = e.target.getAttribute("data-state");
       if (fullscreen != "true") {
         e.target.style.zIndex = 0;
+        document.addEventListener("click", this.handlers.click);
+      } else {
+        document.removeEventListener("click", this.handlers.click);
       }
     }
   }
 
   onClick(e) {
     let target = e.target;
-    if (e.target.className != "grid") {
+    if (e.target.className != "grid" || e.target.className == "close") {
       target = e.target.parentNode;
     }
+    const closeButton = target.getElementsByClassName("close")[0];
     const x = target.getAttribute("data-tx");
     const y = target.getAttribute("data-ty");
     const w = target.getAttribute("data-w");
@@ -74,12 +82,17 @@ class Grid {
       target.style.transform = "translateX(0px) translateY(0px)";
       target.style.width = window.innerWidth;
       target.style.height = window.innerHeight;
+
+      closeButton.classList.remove("hidden");
+      // console.log("close button", closeButton);
     } else {
       target.setAttribute("data-state", false);
       target.style.transform =
         "translateX(" + x * w + "px) translateY(" + y * h + "px)";
       target.style.width = w + "px";
       target.style.height = h + "px";
+      closeButton.classList.add("hidden");
+      // document.addEventListener("click", this.handlers.click);
     }
   }
 
@@ -110,6 +123,13 @@ class Grid {
         div.textContent = lettre;
         document.body.appendChild(div);
         this.cases.push(div);
+
+        // ajout de la case pour fermer
+        const span = document.createElement("span");
+        span.className = "material-icons close hidden";
+        span.textContent = "close";
+        div.appendChild(span);
+        span.addEventListener("click", this.onClick.bind(this));
       }
     }
   }
