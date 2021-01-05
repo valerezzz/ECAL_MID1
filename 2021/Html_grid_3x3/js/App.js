@@ -39,6 +39,10 @@ class App {
     const layer5 = this.grid.cases[4];
     this.canvas_5 = new Key(layer5);
 
+    // on récupère le calque HTML pour la case 5
+    const layer6 = this.grid.cases[5];
+    this.canvas_6 = new Signature(layer6);
+
     /**
      *  on pourra ainsi créer 9 canvas de type variable de la même manière, avec à chaque fois un nom different.
      *
@@ -68,6 +72,9 @@ class App {
 
     this.canvas_5.update();
     this.canvas_5.draw();
+
+    this.canvas_6.update();
+    this.canvas_6.draw();
 
     // pour tout nouveau canvas créé, qu'il soit vanilla, p5 ou paper, il s'agira systématiquement d'activer ces 2 fonctions, update et draw.
     /**
