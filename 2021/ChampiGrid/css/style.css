@@ -19,3 +19,16 @@ div {
   overflow: hidden;
   transition: width 0.2s ease-out, height 0.2s ease-out, transform 0.2s ease-out;
 }
+.close.hidden {
+  display: none;
+}
+.close {
+  position: absolute;
+  display: block;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: white;
+  z-index: 1;
+}

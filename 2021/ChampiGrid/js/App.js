@@ -44,6 +44,9 @@ class App {
     const layer7 = this.grid.cases[6];
     this.canvas_7 = new ChampiSVGPaper(layer7);
 
+    const layer8 = this.grid.cases[7];
+    this.canvas_8 = new MarioChampi(layer8);
+
     /**
      *  on pourra ainsi créer 9 canvas de type variable de la même manière, avec à chaque fois un nom different.
      *
@@ -79,6 +82,9 @@ class App {
 
     this.canvas_7.update();
     this.canvas_7.draw();
+
+    this.canvas_8.update();
+    this.canvas_8.draw();
     // pour tout nouveau canvas créé, qu'il soit vanilla, p5 ou paper, il s'agira systématiquement d'activer ces 2 fonctions, update et draw.
     /**
      *  ex:
