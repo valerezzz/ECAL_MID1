@@ -84,10 +84,10 @@ class ChampiSVGPaper {
     // SI ON A UN CHAPEAU A L'ECRAN
     if (this.CHAPEAU) {
       // ON LE CENTRE AVEC SON MASK
-      this.mask.position = new this.paper.Point(this.w / 2, this.h / 2); // to center of canvas
+      this.mask.position = new this.paper.Point(this.w / 3, this.h / 3); // to center of canvas
       this.CHAPEAU.children[0].position = new this.paper.Point(
-        this.w / 2,
-        this.h / 2
+        this.w / 3,
+        this.h / 3
       ); // to center of canvas
 
       // POUR TOUS LES POINTS QUI FORMENT LE POURTOUR CHAPEAU
