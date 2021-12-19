@@ -1,0 +1,17 @@
+[
+  {
+    "image": "asterisk.png",
+    "param": { "a": 2, "b": 3, "m": 10, "n1": 1, "n2": 0.5, "n3": 0.5 },
+    "sound": "steel01.mp3"
+  },
+  {
+    "image": "bean.png",
+    "param": { "a": 2, "b": 4, "m": 5, "n1": 1, "n2": 0.2, "n3": 0.1 },
+    "sound": "Steel02.mp3"
+  },
+  {
+    "image": "bone.png",
+    "param": { "a": 4, "b": 3, "m": 8, "n1": 1, "n2": 0.9, "n3": 0.9 },
+    "sound": "Steel03.mp3"
+  }
+]
