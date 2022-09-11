@@ -44,7 +44,7 @@ class Letter {
 
   draw() {
     this.walls.forEach((item) => {
-      item.show();
+      // item.show();
     });
   }
 }

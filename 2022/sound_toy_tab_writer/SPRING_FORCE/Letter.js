@@ -7,7 +7,7 @@ class Letter {
      *
      * Pour l'exemple, uniquement le A est codé, il suffit de suivre la même logique pour les autres lettres
      */
-    this.ELASTIC_POINTS = [];
+    this.ELASTIC_POINTS = [this.anchor];
     switch (value) {
       case "A":
         let p1 = new ForcePoint(
@@ -41,8 +41,8 @@ class Letter {
 
   draw() {
     /*ANCRE*/
-    this.anchor.updateForce();
-    this.anchor.draw();
+    // this.anchor.updateForce();
+    // this.anchor.draw();
     //tous les points élastiques
     this.ELASTIC_POINTS.forEach((item) => {
       item.updateForce();
