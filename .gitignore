@@ -1,1 +1,12 @@
 *.DS_Store
+.parcel-cache
+.vscode
+.cache
+.babelrc
+.parcelrc
+.proxyrc.js
+certificate.*
+package-lock.json
+dist
+node_modules
+.eslintrc.json
