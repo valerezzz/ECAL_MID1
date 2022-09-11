@@ -67,6 +67,7 @@ class Grid {
 
   onClick(e) {
     let target = e.target;
+    console.log(e.target.className);
     if (e.target.className != "grid" || e.target.className == "close") {
       target = e.target.parentNode;
     }

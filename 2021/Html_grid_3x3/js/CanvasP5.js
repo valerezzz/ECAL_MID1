@@ -20,6 +20,12 @@ class CanvasP5 {
     this.h = parseFloat(parent.style.height);
     // METHODE PARTICULIERE POUR ACCEDER AUX FONCTIONNALITES P5
     const P5 = (this.P5 = new p5((sketch) => sketch));
+    setTimeout(() => {
+      P5.getAudioContext().resume();
+      this.mic = new p5.AudioIn();
+      this.mic.start();
+    }, 1);
+    // };
     // CONSTRUCTION DU CANVAS ET INJECTION DANS LE CALQUE DE LA CASE CORRESPONDANTE
     this.p5Canvas = P5.createCanvas(this.w, this.h);
     this.p5Canvas.canvas.style.position = "absolute";
@@ -72,6 +78,15 @@ class CanvasP5 {
 
     this.s2.update(this.s1.x, this.s1.y);
     this.s2.display(this.s1.x, this.s1.y);
+
+    if (this.mic) {
+      console.log(this.mic.getLevel());
+      let vol = this.mic.getLevel();
+      P5.fill(127);
+      P5.stroke(0);
+      let h = P5.map(vol, 0, 1, this.h, 0);
+      P5.ellipse(this.w / 2, h - 250, 50, 50);
+    }
   }
 }
 
