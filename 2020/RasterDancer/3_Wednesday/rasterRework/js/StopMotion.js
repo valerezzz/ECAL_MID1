@@ -1,21 +1,21 @@
 const DIMENSION = {
-  'width': 500,
-  'height': 500,
-  'scale': 1.5,
+  width: 500,
+  height: 500,
+  scale: 1.5,
 };
-const FOLDER = './export2/';
-const EXT = '.jpg';
+const FOLDER = "./export2/";
+const EXT = ".jpg";
 const MAX = 69;
-const DELAY = 1;
+const DELAY = 2;
 
 class StopMotion {
   constructor() {
-    this.canvas = document.createElement('canvas');
+    this.canvas = document.createElement("canvas");
     this.canvas.width = DIMENSION.width;
     this.canvas.height = DIMENSION.height;
     this.offsetX = DIMENSION.width / 2;
     this.offsetY = DIMENSION.height / 2;
-    this.ctx = this.canvas.getContext('2d');
+    this.ctx = this.canvas.getContext("2d");
     // document.body.appendChild(this.canvas);
     this.counter = 0;
     this.frameCounter = 0;
@@ -32,17 +32,23 @@ class StopMotion {
     // initialiser
 
     const PX = new PIXI.Application(
-        DIMENSION.width * 3, DIMENSION.height * DIMENSION.scale,
-        {transparent: true, antialias: true});
+      DIMENSION.width * 3,
+      DIMENSION.height * DIMENSION.scale,
+      { transparent: true, antialias: true }
+    );
     document.body.appendChild(PX.view);
     PX.renderer.backgroundColor = 0x00000000;
 
-    const textures = PIXI.Texture.fromImage('./texture.png');
+    const textures = PIXI.Texture.fromImage("./texture.png");
 
     this.pixel = new PIXI.Texture(
-        textures.baseTexture, new PIXI.math.Rectangle(0, 0, 20, 20));
+      textures.baseTexture,
+      new PIXI.math.Rectangle(0, 0, 20, 20)
+    );
     this.dust = new PIXI.Texture(
-        textures.baseTexture, new PIXI.math.Rectangle(0, 20, 20, 20));
+      textures.baseTexture,
+      new PIXI.math.Rectangle(0, 20, 20, 20)
+    );
 
     this.particles = [];
     const nombre_de_particules = 65000;
@@ -61,7 +67,6 @@ class StopMotion {
       this.particles.push(particle);
     }
 
-
     this.grid = [];
 
     let angle = 0;
@@ -69,17 +74,19 @@ class StopMotion {
     for (let y = step; y < DIMENSION.height; y += step) {
       for (let x = step; x < DIMENSION.width; x += step) {
         angle += Math.PI / 200;
-        this.grid.push({x: x, y: y, angle: angle});
+        this.grid.push({ x: x, y: y, angle: angle });
       }
     }
-    const container =
-        new PIXI.particles.ParticleContainer(this.particles.length, {
-          scale: true,
-          position: true,
-          // rotation: true,
-          uvs: true,
-          alpha: true,
-        });
+    const container = new PIXI.particles.ParticleContainer(
+      this.particles.length,
+      {
+        scale: true,
+        position: true,
+        // rotation: true,
+        uvs: true,
+        alpha: true,
+      }
+    );
     for (let i = 0; i < this.particles.length; i++) {
       container.addChild(this.particles[i]);
     }
@@ -88,9 +95,9 @@ class StopMotion {
   }
 
   loadImage(chiffre) {
-    let leadingZero = '';
+    let leadingZero = "";
     if (chiffre < 10) {
-      leadingZero = '0' + chiffre;
+      leadingZero = "0" + chiffre;
     } else {
       leadingZero = chiffre;
     }
@@ -99,7 +106,7 @@ class StopMotion {
     image.src = url;
     this.allImages.push(image);
     if (this.allImages.length >= MAX) {
-      console.log('on a toutes les images');
+      console.log("on a toutes les images");
       this.draw();
     } else {
       chiffre++;
@@ -108,7 +115,7 @@ class StopMotion {
   }
 
   processData(data) {
-    this.ctx.fillStyle = 'black';
+    this.ctx.fillStyle = "black";
 
     // for (let y = 6; y < DIMENSION.height; y += 6) {
     //   for (let x = 6; x < DIMENSION.width; x += 6) {
@@ -130,7 +137,6 @@ class StopMotion {
         particle.position.y = y * DIMENSION.scale;
         particle.alphaValue = 1;
         particle.texture = this.dust;
-
 
         // particle.position.x =
         //     x + Math.sin(this.grid[i].angle * Math.PI / 180) * 20;
@@ -172,15 +178,22 @@ class StopMotion {
     }
   }
 
-
   draw() {
     // console.log('draw');
     if (this.frameCounter % DELAY == 0) {
       this.ctx.drawImage(
-          this.allImages[this.counter], 0, 0, DIMENSION.width,
-          DIMENSION.height);
-      const data =
-          this.ctx.getImageData(0, 0, DIMENSION.width, DIMENSION.height).data;
+        this.allImages[this.counter],
+        0,
+        0,
+        DIMENSION.width,
+        DIMENSION.height
+      );
+      const data = this.ctx.getImageData(
+        0,
+        0,
+        DIMENSION.width,
+        DIMENSION.height
+      ).data;
       // this.ctx.clearRect(0, 0, DIMENSION.width, DIMENSION.height);
       // // console.log(data);
       this.processData(data);
@@ -196,9 +209,9 @@ class StopMotion {
   }
 
   map(x, inMin, inMax, outMin, outMax) {
-    return (x - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+    return ((x - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
   }
-};
+}
 
 window.onload = (e) => {
   new StopMotion();

@@ -1,6 +1,6 @@
 const DIMENSION = {
-  'width': 500,
-  'height': 500,
+  width: 500,
+  height: 500,
 };
 // const FOLDER = './C4D/';
 // const EXT = '.png';
@@ -9,26 +9,26 @@ const DIMENSION = {
 
 class StopMotion {
   constructor() {
-    this.canvas = document.createElement('canvas');
+    this.canvas = document.createElement("canvas");
     this.canvas.width = DIMENSION.width * 2;
     this.canvas.height = DIMENSION.height * 2;
     this.offsetX = DIMENSION.width / 2;
     this.offsetY = DIMENSION.height / 2;
-    this.ctx = this.canvas.getContext('2d');
+    this.ctx = this.canvas.getContext("2d");
     document.body.appendChild(this.canvas);
     // this.counter = 0;
     // this.frameCounter = 0;
     this.setup();
   }
   setup() {
-    console.log('tout est ok');
+    console.log("tout est ok");
     // this.allImages = [];
     // this.loadImage(12);
 
     this.initGrid();
     this.angle = 0;
     this.image = new Image();
-    this.image.src = './andy.jpg';
+    this.image.src = "./andy.jpg";
     this.image.onload = this.draw.bind(this);
   }
 
@@ -38,7 +38,7 @@ class StopMotion {
     for (let y = 5; y < DIMENSION.height; y += 5) {
       for (let x = 5; x < DIMENSION.width; x += 5) {
         angle += Math.PI / 78;
-        this.grid.push({x: x, y: y, angle: angle});
+        this.grid.push({ x: x, y: y, angle: angle });
       }
     }
   }
@@ -81,15 +81,20 @@ class StopMotion {
       const blue = data[index + 2];
       const luminance = (0.299 * red + 0.587 * green + 0.0722 * blue) / 255;
       // console.log(luminance);
-      this.ctx.fillStyle = 'rgb(' + red + ',' + green + ',' + blue + ')';
+      this.ctx.fillStyle = "rgb(" + red + "," + green + "," + blue + ")";
       // this.ctx.strokeStyle = 'rgb(' + red + ',' + green + ',' + blue + ')';
 
       this.ctx.beginPath();
       this.ctx.arc(
-          this.offsetX + x + Math.sin(this.grid[i].angle * Math.PI / 180) * 100,
-          this.offsetY + y +
-              Math.cos(this.grid[i].angle * 2 * Math.PI / 180) * 100,
-          (luminance * 8), 0, Math.PI * 2, false);
+        this.offsetX + x + Math.sin((this.grid[i].angle * Math.PI) / 180) * 100,
+        this.offsetY +
+          y +
+          Math.cos((this.grid[i].angle * 2 * Math.PI) / 180) * 100,
+        luminance * 8,
+        0,
+        Math.PI * 2,
+        false
+      );
       this.ctx.fill();
       // this.ctx.moveTo(x, y);
       // const x1 = x +
@@ -112,8 +117,8 @@ class StopMotion {
     // this.ctx.clearRect(0, 0, DIMENSION.width, DIMENSION.height);
     // this.ctx.globalCompositeOperation = 'difference';
     this.ctx.drawImage(this.image, 0, 0, DIMENSION.width, DIMENSION.height);
-    const data =
-        this.ctx.getImageData(0, 0, DIMENSION.width, DIMENSION.height).data;
+    const data = this.ctx.getImageData(0, 0, DIMENSION.width, DIMENSION.height)
+      .data;
     this.ctx.clearRect(0, 0, DIMENSION.width * 2, DIMENSION.height * 2);
     // console.log(data);
     this.processData(data);
@@ -130,9 +135,9 @@ class StopMotion {
   }
 
   map(x, inMin, inMax, outMin, outMax) {
-    return (x - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+    return ((x - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
   }
-};
+}
 
 window.onload = (e) => {
   new StopMotion();

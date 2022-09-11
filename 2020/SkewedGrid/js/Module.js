@@ -19,19 +19,27 @@ class Module {
       case 1:
         this.path.rect(rect.x, rect.y, rect.width, this.thickness);
         break;
-        // bottom
+      // bottom
       case 2:
         this.path.rect(
-            rect.x, rect.y + rect.height, rect.width, this.thickness);
+          rect.x,
+          rect.y + rect.height,
+          rect.width,
+          this.thickness
+        );
         break;
-        // left
+      // left
       case 3:
         this.path.rect(rect.x, rect.y, this.thickness, rect.height);
         break;
-        // right
+      // right
       case 4:
         this.path.rect(
-            rect.x + rect.width, rect.y, this.thickness, rect.height);
+          rect.x + rect.width,
+          rect.y,
+          this.thickness,
+          rect.height
+        );
         break;
     }
   }
@@ -61,7 +69,6 @@ class Module {
     }
   }
 
-
   /*
     !!DON'T TOUCH THESE FUNCTIONS!!
     THESE ARE UTIL FUNCTIONS TO CALCULATE REAL POSITION OF ELEMENTS
@@ -80,9 +87,9 @@ class Module {
     const m2 = this.matrix[0] * mat[2] + this.matrix[2] * mat[3];
     const m3 = this.matrix[1] * mat[2] + this.matrix[3] * mat[3];
     const m4 =
-        this.matrix[0] * mat[4] + this.matrix[2] * mat[5] + this.matrix[4];
+      this.matrix[0] * mat[4] + this.matrix[2] * mat[5] + this.matrix[4];
     const m5 =
-        this.matrix[1] * mat[4] + this.matrix[3] * mat[5] + this.matrix[5];
+      this.matrix[1] * mat[4] + this.matrix[3] * mat[5] + this.matrix[5];
     this.matrix = [m0, m1, m2, m3, m4, m5];
   }
   isPointInTransformedRect(_x, _y) {
@@ -91,21 +98,24 @@ class Module {
     const y = p.y;
     return this.ctx.isPointInPath(this.path, x, y);
   }
+
   getScreenPoint(transformedX, transformedY) {
-    return (this.screenPoint(transformedX, transformedY));
+    return this.screenPoint(transformedX, transformedY);
   }
   screenPoint(transformedX, transformedY) {
     const d =
-        1 / (this.matrix[0] * this.matrix[3] - this.matrix[1] * this.matrix[2]);
+      1 / (this.matrix[0] * this.matrix[3] - this.matrix[1] * this.matrix[2]);
     const im = [
-      this.matrix[3] * d, -this.matrix[1] * d, -this.matrix[2] * d,
+      this.matrix[3] * d,
+      -this.matrix[1] * d,
+      -this.matrix[2] * d,
       this.matrix[0] * d,
       d * (this.matrix[2] * this.matrix[5] - this.matrix[3] * this.matrix[4]),
-      d * (this.matrix[1] * this.matrix[4] - this.matrix[0] * this.matrix[5])
+      d * (this.matrix[1] * this.matrix[4] - this.matrix[0] * this.matrix[5]),
     ];
-    return ({
+    return {
       x: transformedX * im[0] + transformedY * im[2] + im[4],
-      y: transformedX * im[1] + transformedY * im[3] + im[5]
-    });
+      y: transformedX * im[1] + transformedY * im[3] + im[5],
+    };
   }
 }
