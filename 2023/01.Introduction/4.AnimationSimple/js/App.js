@@ -4,6 +4,7 @@ const pixelRatio = window.devicePixelRatio;
 let monCanvas;
 let mesOutils;
 let positionX = 0;
+let isAnimated = false;
 function start() {
   // constante locale
   monCanvas = document.getElementById("ecal");
@@ -15,6 +16,21 @@ function start() {
 
   //on ajuste la positionX au centre du canvas
   positionX = monCanvas.width / 2;
+
+  // on ajoute un écouteur d'événement "click"
+  //  sur le document
+  document.addEventListener("click", function (event) {
+    console.log(event);
+    // if (event.key == "Enter") {
+    if (isAnimated == true) {
+      isAnimated = false;
+    } else {
+      isAnimated = true;
+    }
+    // isAnimated = !isAnimated;
+    // }
+  });
+
   // lancement de la fonction de dessin
   animate();
 }
@@ -25,7 +41,9 @@ function animate() {
   // on efface le canvas
   mesOutils.clearRect(0, 0, monCanvas.width, monCanvas.height);
   // on incremente la position X
-  positionX += 1;
+  if (isAnimated == true) {
+    positionX += 1;
+  }
   // on dessine
   dessine();
   //si la position X est plus grande que la largeur du canvas
